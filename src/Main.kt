@@ -36,7 +36,6 @@ fun boardpadding() {
     println()
 }
 
-
 fun main() {
     val space = mutableListOf<String>()//play space difine thingy
     createSpace(space)
@@ -53,10 +52,10 @@ fun main() {
     when (choice) {
         'Y' -> {
             while (true) { //-----------------------------------------------------------------------------
-                while (true) {
                     boardpadding()
                     printspace(space)
 
+                while (true) {
                     println()
                     println("Player (X) Turn")
                     print("where would you like to play: ")
@@ -82,8 +81,8 @@ fun main() {
                             }
 
                             // if both left block and right block  then it dosnt allow move
-                            if (leftBlocked || rightBlocked) {
-                                println("You cannot place here, O is next to this space!")
+                            if (leftBlocked && rightBlocked) {
+                                println("You cannot place here O is blocking you")
                             } else {
 
                                 // if NOT blocked place the X
@@ -99,7 +98,7 @@ fun main() {
                     }
                 }
 
-                while (true) {
+
                     //------------------------------------
                     //---------------O play -------------
                     //------------------------------------
@@ -107,6 +106,7 @@ fun main() {
                     boardpadding()
                     printspace(space)
 
+                while (true) {
                     println()
                     println("Player (O) Turn")
                     print("where would you like to play: ")
@@ -120,20 +120,20 @@ fun main() {
                         if (space[ListPosition] == " ") {
 
                             val leftBlocked = if (ListPosition > 0) {
-                                space[ListPosition - 1] == "x"  // checks for O on the left
+                                space[ListPosition - 1] == "X"  // checks for O on the left
                             } else {
                                 false // no play space on the left
                             }
 
                             val rightBlocked = if (ListPosition < space.size - 1) {
-                                space[ListPosition + 1] == "x"   // cheks if there is player on the left
+                                space[ListPosition + 1] == "X"   // cheks if there is player on the left
                             } else {
                                 false // no space on the right, so cannot be blocked
                             }
 
                             // if both left block and right block  then it dosnt allow move
-                            if (leftBlocked || rightBlocked) {
-                                println("You cannot place here, O is next to this space!")
+                            if (leftBlocked && rightBlocked) {
+                                println("You cannot place here X is blocking you")
                             } else {
 
                                 // if NOT blocked, place the X
