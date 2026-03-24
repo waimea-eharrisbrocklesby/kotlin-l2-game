@@ -44,14 +44,31 @@ fun main() {
     val choice = readln().first().uppercaseChar()
     when (choice) {
         'Y' -> {
-            println()
-            println()
-            printspace(space)
+            while (true) {
+                println()
+                println()
+                printspace(space)
 
-            println()
-            println("Player (X) Start: ")
-            print("where would you like to play: ")
-            // rest of game
+                println()
+                println("Player (X) Start: ")
+                print("where would you like to play: ")
+
+                val PositionInput = readln()
+                val position = PositionInput.toInt()
+
+                if (position in 1..12) { // makes sure number is on the board
+                    val ListPosition = position - 1 // count starts from 0 this aligns it
+
+                    if (space[ListPosition] == " ") {
+                        space[ListPosition] = "X"
+                    } else {
+                        println("Sorry, This is not a Valid play space, Chose a new one!")
+                    }
+
+                } else {
+                    println("That space does not exist, Pick a New one!")
+                }
+            }
         }
         'N' -> {
             println("That's Okay, Come back another time!")
