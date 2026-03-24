@@ -44,35 +44,110 @@ fun main() {
     val choice = readln().first().uppercaseChar()
     when (choice) {
         'Y' -> {
-            while (true) {
-                println()
-                println()
-                printspace(space)
+            while (true) { //-----------------------------------------------------------------------------
+                while (true) {
+                    println()
+                    println()
+                    printspace(space)
 
-                println()
-                println("Player (X) Start: ")
-                print("where would you like to play: ")
+                    println()
+                    println("Player (X) Turn")
+                    print("where would you like to play: ")
 
-                val PositionInput = readln()
-                val position = PositionInput.toInt()
+                    val PositionInputx = readln()
+                    val positionX = PositionInputx.toInt()
 
-                if (position in 1..12) { // makes sure number is on the board
-                    val ListPosition = position - 1 // count starts from 0 this aligns it
+                    if (positionX in 1..12) { // makes sure number is on the board
+                        val ListPosition = positionX - 1 // count starts from 0 this aligns it
 
-                    if (space[ListPosition] == " ") {
-                        space[ListPosition] = "X"
+                        if (space[ListPosition] == " ") {
+
+                            val leftBlocked = if (ListPosition > 0) {
+                                space[ListPosition - 1] == "O"  // checks for O on the left
+                            } else {
+                                false // no play space on the left
+                            }
+
+                            val rightBlocked = if (ListPosition < space.size - 1) {
+                                space[ListPosition + 1] == "O"   // cheks if there is player on the left
+                            } else {
+                                false // no space on the right, so cannot be blocked
+                            }
+
+                            // if both left block and right block  then it dosnt allow move
+                            if (leftBlocked || rightBlocked) {
+                                println("You cannot place here, O is next to this space!")
+                            } else {
+
+                                // if NOT blocked, place the X
+                                space[ListPosition] = "X"
+                                break
+                            }
+
+                        } else {
+                            println("Someone has aleady played there, pick a new square")
+                        }
                     } else {
-                        println("Sorry, This is not a Valid play space, Chose a new one!")
+                        println("That space is not on the board! pick a new one")
                     }
+                }
 
-                } else {
-                    println("That space does not exist, Pick a New one!")
+                while (true) {
+                    //------------------------------------
+                    //---------------O play -------------
+                    //------------------------------------
+
+                    println()
+                    println()
+                    printspace(space)
+
+                    println()
+                    println("Player (O) Turn")
+                    print("where would you like to play: ")
+
+                    val PositionInputO = readln()
+                    val positionO = PositionInputO.toInt()
+
+                    if (positionO in 1..12) { // makes sure number is on the board
+                        val ListPosition = positionO - 1 // count starts from 0 this aligns it
+
+                        if (space[ListPosition] == " ") {
+
+                            val leftBlocked = if (ListPosition > 0) {
+                                space[ListPosition - 1] == "x"  // checks for O on the left
+                            } else {
+                                false // no play space on the left
+                            }
+
+                            val rightBlocked = if (ListPosition < space.size - 1) {
+                                space[ListPosition + 1] == "x"   // cheks if there is player on the left
+                            } else {
+                                false // no space on the right, so cannot be blocked
+                            }
+
+                            // if both left block and right block  then it dosnt allow move
+                            if (leftBlocked || rightBlocked) {
+                                println("You cannot place here, O is next to this space!")
+                            } else {
+
+                                // if NOT blocked, place the X
+                                space[ListPosition] = "O"
+                                break
+                            }
+
+                        } else {
+                            println("Someone has aleady played there, pick a new square")
+                        }
+                    } else {
+                        println("That space is not on the board! pick a new one")
+                    }
                 }
             }
-        }
+        } // end of if you want to play
+
         'N' -> {
             println("That's Okay, Come back another time!")
-        }
+        } // end of if you dont wanna play
     }
 
 }
