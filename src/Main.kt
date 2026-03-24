@@ -1,3 +1,5 @@
+import kotlin.io.println
+
 /**
  * =====================================================================
  * Programming Project for NCEA Level 2, Standard 91896
@@ -29,6 +31,12 @@ fun printspace(space: List<String>) {
     println("╚═════╩═════╩═════╩═════╩═════╩═════╩═════╩═════╩═════╩═════╩═════╩═════╝".green())
 }
 
+fun boardpadding() {
+    println()
+    println()
+}
+
+
 fun main() {
     val space = mutableListOf<String>()//play space difine thingy
     createSpace(space)
@@ -46,8 +54,7 @@ fun main() {
         'Y' -> {
             while (true) { //-----------------------------------------------------------------------------
                 while (true) {
-                    println()
-                    println()
+                    boardpadding()
                     printspace(space)
 
                     println()
@@ -79,7 +86,7 @@ fun main() {
                                 println("You cannot place here, O is next to this space!")
                             } else {
 
-                                // if NOT blocked, place the X
+                                // if NOT blocked place the X
                                 space[ListPosition] = "X"
                                 break
                             }
@@ -97,8 +104,7 @@ fun main() {
                     //---------------O play -------------
                     //------------------------------------
 
-                    println()
-                    println()
+                    boardpadding()
                     printspace(space)
 
                     println()
