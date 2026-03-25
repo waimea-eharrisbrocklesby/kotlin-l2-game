@@ -1,0 +1,26 @@
+
+
+//----------------------------------------------
+val leftOScore = if (ListPosition > 0) {
+    space[ListPosition - 1] == "O"  // checks for O on the left
+} else {
+    false // no play space on the left
+}
+
+val rightOScore = if (ListPosition > 0) {
+    space[ListPosition + 1] == "O"   // cheks if there is player on the left
+} else {
+    false // no space on the right, so cannot be blocked
+}
+
+val CenterOScore = if (ListPosition > 0) {
+    space[ListPosition] == "O"   // cheks if there is player on the left
+} else {
+    false // no space on the right, so cannot be blocked
+}
+
+// if both left block and right block  then it dosnt allow move
+if (leftOScore && rightOScore && CenterOScore) {
+    println("point!")
+}
+//----------------------------------------------

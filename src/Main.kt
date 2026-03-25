@@ -142,11 +142,13 @@ fun main() {
                             }
 
                         } else {
-                            println("Someone has aleady played there, pick a new square")
+                        println("Someone has aleady played there, pick a new square")
                         }
+
                     } else {
                         println("That space is not on the board! pick a new one")
                     }
+
                 }
             }
         } // end of if you want to play
