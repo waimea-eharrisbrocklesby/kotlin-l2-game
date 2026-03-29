@@ -138,7 +138,14 @@ fun main() {
 
                                 // if NOT blocked, place the X
                                 space[ListPosition] = "O"
-                                break
+
+                                //--------------------------
+                                //kick player spot
+                                //----------------
+
+                                //-----------------------
+
+                               break
                             }
 
                         } else {
