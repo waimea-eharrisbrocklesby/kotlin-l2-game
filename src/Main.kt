@@ -31,6 +31,82 @@ fun printspace(space: List<String>) {
     println("╚═════╩═════╩═════╩═════╩═════╩═════╩═════╩═════╩═════╩═════╩═════╩═════╝".green())
 }
 
+fun scanChains(space: List<String>, playerSymbol: String): Pair<Int, List<Int>> {
+
+    var points = 0
+    var streak = 0
+    var startIndex = -1
+
+    val positionsToRemove = mutableListOf<Int>() // stores stuff to delete later
+
+    for (i in space.indices) {
+
+        if (space[i] == playerSymbol) {
+
+            // start of chian
+            if (streak == 0) {
+                startIndex = i
+            }
+
+            streak++
+
+        } else {
+
+            // chain ends
+            if (streak >= 3) {
+
+                // add Score
+                points += streak
+
+                // store all positons in this chain
+                for (j in startIndex until startIndex + streak) {
+                    positionsToRemove.add(j)
+                }
+            }
+
+            streak = 0
+            startIndex = -1
+        }
+    }
+
+    if (streak >= 3) {
+
+        points += streak
+
+        for (j in startIndex until startIndex + streak) {
+            positionsToRemove.add(j)
+        }
+    }
+
+    return Pair(points, positionsToRemove)
+}
+
+fun ExplodeCounter(space: MutableList<String>, positions: List<Int>) {
+
+    // remove duplicates just in case
+    val uniquePositions = positions.distinct()
+
+    for (index in uniquePositions) {
+        space[index] = " "
+    }
+}
+
+fun ShowScores(space: MutableList<String>) {
+
+    val oResult = scanChains(space, "O")
+    val oPoints = oResult.first
+    val xResult = scanChains(space, "X")
+    val xPoints = oResult.first
+
+    ExplodeCounter(space, oResult.second)
+    ExplodeCounter(space, xResult.second)
+
+    println("╔═════════╦═════════╗")
+    println("║    X    ║    O    ║")
+    println("║   $xPoints/10  ║   $oPoints/10  ║")
+    println("╚═════════╩═════════╝")
+}
+
 fun boardpadding() {
     println()
     println()
@@ -52,8 +128,10 @@ fun main() {
     when (choice) {
         'Y' -> {
             while (true) { //-----------------------------------------------------------------------------
-                    boardpadding()
-                    printspace(space)
+
+                ShowScores(space)
+                boardpadding()
+                printspace(space)
 
                 while (true) {
                     println()
@@ -98,13 +176,14 @@ fun main() {
                     }
                 }
 
+                ShowScores(space)
 
-                    //------------------------------------
-                    //---------------O play -------------
-                    //------------------------------------
+                //------------------------------------
+                //---------------O play -------------
+                //------------------------------------
 
-                    boardpadding()
-                    printspace(space)
+                boardpadding()
+                printspace(space)
 
                 while (true) {
                     println()
@@ -139,17 +218,11 @@ fun main() {
                                 // if NOT blocked, place the X
                                 space[ListPosition] = "O"
 
-                                //--------------------------
-                                //kick player spot
-                                //----------------
-
-                                //-----------------------
-
-                               break
+                                break
                             }
 
                         } else {
-                        println("Someone has aleady played there, pick a new square")
+                            println("Someone has aleady played there, pick a new square")
                         }
 
                     } else {
@@ -157,6 +230,7 @@ fun main() {
                     }
 
                 }
+
             }
         } // end of if you want to play
 
