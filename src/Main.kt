@@ -13,6 +13,34 @@ import kotlin.io.println
  * =====================================================================
  */
 
+import kotlin.io.println
+
+fun title() {
+    print("                         %@@@@@@        ".blue()); print("                                                              ".green()); println("   @@@@@@    @@@                   ".blue())
+    print("                         @@    @@       ".blue()); print("                                                              ".green()); println("  @@    @@@@@@@                    ".blue())
+    print("                      @@@@%    @@       ".blue()); print("                                                              ".green()); println("  @@                               ".blue())
+    print("                      @@@@@@   @@%  @@  ".blue()); print("                                                              ".green()); println("  .@@@@@                           ".blue())
+    print("                     @@@@@@@     @@@@   ".blue()); print("                                                              ".green()); println("  .@@@@@@                          ".blue())
+    print("                     @@@@@@             ".blue()); print("                                                              ".green()); println("  %@@@@@@@+  .@@@@@@@+             ".blue())
+    print("              -@@@@@@@@@@@@@        ".blue()); print("               @@@@@@  @@    @@    @@@    #@   @@    @            ".green()); println("    @@@@@@@@@@@@@@@@@@@@@@         ".blue())
+    print("            @@@@@@@@@@@@@@@@@@@     ".blue()); print("              @@    =  @@    @@    @.@@   #@   @@@:  @            ".green()); println("     @@@@@@@@@@@@@@@@@@@@@@@.      ".blue())
+    print("          @@@@@@@@@@@@@@@@@@@@@@@   ".blue()); print("              @@       @@@@@@@@   @@  @%  #@   @  @@ @            ".green()); println("     @@@@@@@@@@@@@@@@@@@@@@@@@     ".blue())
+    print("        -@@@@@@@@@@@@@@@@@@@@@@@@@  ".blue()); print("              @@    @. @@    @@  @@@@@@@  #@   @   @@@            ".green()); println("    @@@@@@@@@@@@@@@@@@@@@@@@@@@    ".blue())
+    print("       .@@@@@@@@@@@@@@@@@@@@@@@@@@@ ".blue()); print("               @@@@@@  @@    @@  @@    @@ #@   @    @@            ".green()); println("   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@   ".blue())
+    print("       @@@@@@@@@@@@@@@@@@@@@@@@@@@@@".blue()); print("                                                                  ".green()); println("  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  ".blue())
+    print("      %@@@@@@@@@@@@@@@@@@@@@@@@@@@@@".blue()); print("                                                                  ".green()); println("  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@. ".blue())
+    print("      @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@".blue()); print("                                                                  ".green()); println(" .@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ".blue())
+    print("      @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@".blue()); print("                                                                  ".green()); println(" .@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ".blue())
+    print("      .@@@@@@@@@@@@@@@@@@@@@@@@@@@@@".blue()); print("                                                                  ".green()); println("  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  ".blue())
+    print("       @@@@@@@@@@@@@@@@@@@@@@@@@@@@ ".blue()); print(" @@@@@@   @@@@@@   @@@     @@@@@@ @@@@@@@  @@  :@@@@@@   @@@   @@ ".green()); println("  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  ".blue())
+    print("        @@@@@@@@@@@@@@@@@@@@@@@@@@@ ".blue()); print(" @@   @=  @       :@ @@   @@         @@    @@  @@    @@  @@@@  @@ ".green()); println("   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@   ".blue())
+    print("         @@@@@@@@@@@@@@@@@@@@@@@@@  ".blue()); print(" @@@@@    @@@@@   @@  @@  @@         @@    @@ .@     @@  @@ @@ @@ ".green()); println("    @@@@@@@@@@@@@@@@@@@@@@@@@@@.   ".blue())
+    print("          @@@@@@@@@@@@@@@@@@@@@@    ".blue()); print(" @@  @@   @      @@@@@@@  @@    @@   @@    @@  @@    @@  @@  @@@@ ".green()); println("     @@@@@@@@@@@@@@@@@@@@@@@@@     ".blue())
+    print("            =@@@@@@@@@@@@@@@@@      ".blue()); print(" @@   @@  @@@@@@ @=    @@  +@@@@*    @@    @@   @@@@@.   @@   #@@ ".green()); println("       @@@@@@@@@@@@@@@@@@@@@.      ".blue())
+    print("                @@@@@@@@@@%         ".blue()); print("                                                                  ".green()); println("         @@@@@@@@@@@@@@@@@         ".blue())
+    print("                                    ".blue()); print("                                                                  ".green()); println("             +@@@@@@@*             ".blue())
+}
+
 fun createSpace(space: MutableList<String>) {
     for (i in 1..12) {
         space.add(" ")
@@ -37,13 +65,12 @@ fun scanChains(space: List<String>, playerSymbol: String): Pair<Int, List<Int>> 
     var streak = 0
     var startIndex = -1
 
-    val positionsToRemove = mutableListOf<Int>() // stores stuff to delete later
+    val positionsToRemove = mutableListOf<Int>()
 
     for (i in space.indices) {
 
         if (space[i] == playerSymbol) {
 
-            // start of chian
             if (streak == 0) {
                 startIndex = i
             }
@@ -52,13 +79,9 @@ fun scanChains(space: List<String>, playerSymbol: String): Pair<Int, List<Int>> 
 
         } else {
 
-            // chain ends
             if (streak >= 3) {
-
-                // add Score
                 points += streak
 
-                // store all positons in this chain
                 for (j in startIndex until startIndex + streak) {
                     positionsToRemove.add(j)
                 }
@@ -70,7 +93,6 @@ fun scanChains(space: List<String>, playerSymbol: String): Pair<Int, List<Int>> 
     }
 
     if (streak >= 3) {
-
         points += streak
 
         for (j in startIndex until startIndex + streak) {
@@ -82,28 +104,17 @@ fun scanChains(space: List<String>, playerSymbol: String): Pair<Int, List<Int>> 
 }
 
 fun ExplodeCounter(space: MutableList<String>, positions: List<Int>) {
-
-    // remove duplicates just in case
     val uniquePositions = positions.distinct()
-
     for (index in uniquePositions) {
         space[index] = " "
     }
 }
 
-fun ShowScores(space: MutableList<String>) {
-
-    val oResult = scanChains(space, "O")
-    val oPoints = oResult.first
-    val xResult = scanChains(space, "X")
-    val xPoints = oResult.first
-
-    ExplodeCounter(space, oResult.second)
-    ExplodeCounter(space, xResult.second)
-
+// ✅ FIXED
+fun ShowScores(xScore: Int, oScore: Int) {
     println("╔═════════╦═════════╗")
     println("║    X    ║    O    ║")
-    println("║   $xPoints/10  ║   $oPoints/10  ║")
+    println("║   $xScore/10  ║   $oScore/10  ║")
     println("╚═════════╩═════════╝")
 }
 
@@ -112,24 +123,34 @@ fun boardpadding() {
     println()
 }
 
+fun bigspace() {
+    for (i in 1..40) {
+        println("")
+    }
+}
+
 fun main() {
-    val space = mutableListOf<String>()//play space difine thingy
+    val space = mutableListOf<String>()
+    var xScore = 0
+    var oScore = 0
+
     createSpace(space)
 
-    println("╔══════════════════╗")
-    println("║  Chain reaction! ║ ")
-    println("╚══════════════════╝")
-    println( )
-    println( )
+    title()
+    boardpadding()
 
     println("Do You whish to play? [Y] [N]")
     print("Choice: ")
     val choice = readln().first().uppercaseChar()
+
     when (choice) {
         'Y' -> {
-            while (true) { //-----------------------------------------------------------------------------
+            while (true) {
 
-                ShowScores(space)
+                bigspace()
+                title()
+                boardpadding()
+                ShowScores(xScore, oScore)
                 boardpadding()
                 printspace(space)
 
@@ -138,33 +159,31 @@ fun main() {
                     println("Player (X) Turn")
                     print("where would you like to play: ")
 
-                    val PositionInputx = readln()
-                    val positionX = PositionInputx.toInt()
+                    val positionX = readln().toInt()
 
-                    if (positionX in 1..12) { // makes sure number is on the board
-                        val ListPosition = positionX - 1 // count starts from 0 this aligns it
+                    if (positionX in 1..12) {
+                        val ListPosition = positionX - 1
 
                         if (space[ListPosition] == " ") {
 
                             val leftBlocked = if (ListPosition > 0) {
-                                space[ListPosition - 1] == "O"  // checks for O on the left
-                            } else {
-                                false // no play space on the left
-                            }
+                                space[ListPosition - 1] == "O"
+                            } else false
 
                             val rightBlocked = if (ListPosition < space.size - 1) {
-                                space[ListPosition + 1] == "O"   // cheks if there is player on the left
-                            } else {
-                                false // no space on the right, so cannot be blocked
-                            }
+                                space[ListPosition + 1] == "O"
+                            } else false
 
-                            // if both left block and right block  then it dosnt allow move
                             if (leftBlocked && rightBlocked) {
                                 println("You cannot place here O is blocking you")
                             } else {
 
-                                // if NOT blocked place the X
                                 space[ListPosition] = "X"
+
+                                val resultX = scanChains(space, "X")
+                                xScore += resultX.first
+                                ExplodeCounter(space, resultX.second)
+
                                 break
                             }
 
@@ -176,12 +195,15 @@ fun main() {
                     }
                 }
 
-                ShowScores(space)
-
-                //------------------------------------
-                //---------------O play -------------
-                //------------------------------------
-
+            if (xScore >= 10){
+                println("wow player X wins ceazy")
+                break
+                // you win crazy anamation
+            }
+                bigspace()
+                title()
+                boardpadding()
+                ShowScores(xScore, oScore)
                 boardpadding()
                 printspace(space)
 
@@ -190,33 +212,30 @@ fun main() {
                     println("Player (O) Turn")
                     print("where would you like to play: ")
 
-                    val PositionInputO = readln()
-                    val positionO = PositionInputO.toInt()
+                    val positionO = readln().toInt()
 
-                    if (positionO in 1..12) { // makes sure number is on the board
-                        val ListPosition = positionO - 1 // count starts from 0 this aligns it
+                    if (positionO in 1..12) {
+                        val ListPosition = positionO - 1
 
                         if (space[ListPosition] == " ") {
 
                             val leftBlocked = if (ListPosition > 0) {
-                                space[ListPosition - 1] == "X"  // checks for O on the left
-                            } else {
-                                false // no play space on the left
-                            }
+                                space[ListPosition - 1] == "X"
+                            } else false
 
                             val rightBlocked = if (ListPosition < space.size - 1) {
-                                space[ListPosition + 1] == "X"   // cheks if there is player on the left
-                            } else {
-                                false // no space on the right, so cannot be blocked
-                            }
+                                space[ListPosition + 1] == "X"
+                            } else false
 
-                            // if both left block and right block  then it dosnt allow move
                             if (leftBlocked && rightBlocked) {
                                 println("You cannot place here X is blocking you")
                             } else {
 
-                                // if NOT blocked, place the X
                                 space[ListPosition] = "O"
+
+                                val resultO = scanChains(space, "O")
+                                oScore += resultO.first
+                                ExplodeCounter(space, resultO.second)
 
                                 break
                             }
@@ -228,17 +247,19 @@ fun main() {
                     } else {
                         println("That space is not on the board! pick a new one")
                     }
-
                 }
 
+            if (oScore >= 10){
+                println("wow player O wins ceazy")
+                break
+                // you win crazy anamation
             }
-        } // end of if you want to play
+
+            }
+        }
 
         'N' -> {
             println("That's Okay, Come back another time!")
-        } // end of if you dont wanna play
+        }
     }
-
 }
-
-
