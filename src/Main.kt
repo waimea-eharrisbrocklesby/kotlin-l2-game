@@ -41,6 +41,26 @@ fun title() {
     print("                                    ".blue()); print("                                                                  ".green()); println("             +@@@@@@@*             ".blue())
 }
 
+fun Rules() {
+
+    println("Game Setup".blue())
+    println("- A row of 12 squares, numbered 1 to 12 from left to right".green())
+    println("- The board starts empty".green())
+    println("- Both players have a supply of 'bombs' (counters) in their own colour".green())
+    println("- Decide who goes first".green())
+    println("")
+    println("Gameplay".blue())
+    println("- Players take turns - You may not skip your turn".green())
+    println("- On your turn you must place one of your bombs on an empty square, but ...".green())
+    println("- You cannot place your bomb directly between two opponent bombs since it would immediately be 'defused' (see the defuse rule below)".green())
+    println("- After placing, the following rules apply (in order):".green())
+    println("- Defuse rule:  if any opponent bomb now has one of your bombs on each side, it is 'defused' and removed from the board (note: two bombs can be defused in one go)".green())
+    println("- Chain reaction rule: if your bomb creates an unbroken chain of 3 or more of your own bombs, the entire chain 'explodes' - all bombs in the chain are removed and you score points equal to the length of the chain".green())
+    println("")
+    println("Win Condition".blue())
+    println("- The first player to reach 10 points wins".green())
+}
+
 fun createSpace(space: MutableList<String>) {
     for (i in 1..12) {
         space.add(" ")
@@ -139,6 +159,8 @@ fun main() {
     title()
     boardpadding()
 
+    Rules()
+
     println("Do You whish to play? [Y] [N]")
     print("Choice: ")
     val choice = readln().first().uppercaseChar()
@@ -146,7 +168,6 @@ fun main() {
     when (choice) {
         'Y' -> {
             while (true) {
-
                 bigspace()
                 title()
                 boardpadding()
