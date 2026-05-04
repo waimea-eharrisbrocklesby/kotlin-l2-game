@@ -130,6 +130,38 @@ fun ExplodeCounter(space: MutableList<String>, positions: List<Int>) {
     }
 }
 
+fun defuseAfterTurn(space: MutableList<String>) {
+
+    for (i in 0..11) {
+
+        if (space[i] != " ") {
+
+            // make sure we are not at the edges
+            if (i > 0 && i < 11) {
+
+                val current = space[i]
+                val left = space[i - 1]
+                val right = space[i + 1]
+
+                // if X is trapped by O
+                if (current == "X") {
+                    if (left == "O" && right == "O") {
+                        space[i] = " "
+                    }
+                }
+
+                // if O is trapped by X
+                if (current == "O") {
+                    if (left == "X" && right == "X") {
+                        space[i] = " "
+                    }
+                }
+
+            }
+        }
+    }
+}
+
 // ✅ FIXED
 fun ShowScores(xScore: Int, oScore: Int) {
     println("╔═════════╦═════════╗")
@@ -201,6 +233,8 @@ fun main() {
 
                                 space[ListPosition] = "X"
 
+                                defuseAfterTurn(space)
+
                                 val resultX = scanChains(space, "X")
                                 xScore += resultX.first
                                 ExplodeCounter(space, resultX.second)
@@ -253,6 +287,8 @@ fun main() {
                             } else {
 
                                 space[ListPosition] = "O"
+
+                                defuseAfterTurn(space)
 
                                 val resultO = scanChains(space, "O")
                                 oScore += resultO.first
