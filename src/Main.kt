@@ -77,6 +77,7 @@ fun printspace(space: List<String>) {
     }
     println()
     println("╚═════╩═════╩═════╩═════╩═════╩═════╩═════╩═════╩═════╩═════╩═════╩═════╝".green())
+        // ive made the styled part of the board as just a print line as it is more effient then having it generate, although it does remove adaptive styling with board size.
 }
 
 fun scanChains(space: List<String>, playerSymbol: String): Pair<Int, List<Int>> {
@@ -136,21 +137,21 @@ fun defuseAfterTurn(space: MutableList<String>) {
 
         if (space[i] != " ") {
 
-            // make sure we are not at the edges
+            // check that not at edged
             if (i > 0 && i < 11) {
 
                 val current = space[i]
                 val left = space[i - 1]
                 val right = space[i + 1]
 
-                // if X is trapped by O
+                // if x is trapped by O
                 if (current == "X") {
                     if (left == "O" && right == "O") {
                         space[i] = " "
                     }
                 }
 
-                // if O is trapped by X
+                // O is traped by X
                 if (current == "O") {
                     if (left == "X" && right == "X") {
                         space[i] = " "
@@ -162,7 +163,6 @@ fun defuseAfterTurn(space: MutableList<String>) {
     }
 }
 
-// ✅ FIXED
 fun ShowScores(xScore: Int, oScore: Int) {
     println("╔═════════╦═════════╗")
     println("║    X    ║    O    ║")
@@ -173,13 +173,13 @@ fun ShowScores(xScore: Int, oScore: Int) {
 fun boardpadding() {
     println()
     println()
-}
+}  // made this function as i constantly needed a double line space and didnt want to qrite as much
 
 fun bigspace() {
-    for (i in 1..40) {
+    for (i in 1..30) {
         println("")
-    }
-}
+    } // made this is a loop as 30 "println("")" in a row would take up uneeded space
+} // this function was made so I dont need to make the for loop 2 times as it has been used twice in the code
 
 fun main() {
     val space = mutableListOf<String>()
@@ -253,7 +253,7 @@ fun main() {
             if (xScore >= 10){
                 println("wow player X wins ceazy")
                 break
-                // you win crazy anamation
+                // wanted to make a cool you win page but ran out of time
             }
                 bigspace()
                 title()
@@ -309,11 +309,11 @@ fun main() {
             if (oScore >= 10){
                 println("wow player O wins ceazy")
                 break
-                // you win crazy anamation
+                // wanted to make a cool you win page but ran out of time
             }
 
             }
-        }
+        } // The reason i have repeated code for each players turn is beacuse mainly i ran out of time, but i started this way as its easier to make blocks of code as they dont need to adapt to each, i understand its more inaficent but it made dovelepment esier, if i where to come back to this i would correct this and make 1 block work for each player.
 
         'N' -> {
             println("That's Okay, Come back another time!")
