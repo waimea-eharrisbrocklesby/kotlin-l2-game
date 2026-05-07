@@ -167,3 +167,22 @@ Player X makes a valid move, then Player O makes a valid move.
 
 ### Expected Test Result
 The game correctly alternates turns between X and O. Each player only plays once per turn cycle, and no turns are skipped or duplicated.
+
+--- 
+
+## Single Defuse Removal Test
+
+This test checks that a single opponent piece is correctly removed when it is trapped between two of the player’s pieces.
+
+### Test Data To Use
+- Board state before move:
+  - Position 3 = X
+  - Position 4 = O
+  - Position 5 = X
+- Player makes a move that triggers `defuseAfterTurn`
+
+### Expected Test Result
+The program correctly detects the trapped O piece at position 4. It is removed and replaced with `" "`. The board updates correctly after the turn with no errors.
+
+--- 
+

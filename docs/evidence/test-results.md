@@ -210,3 +210,23 @@ This test checks that turns correctly switch between Player X and Player O.
 ![Screencast+From+2026-05-07+13-19-12.gif](screenshots/Screencast%2BFrom%2B2026-05-07%2B13-19-12.gif)
 
 The program correctly alternated turns between Player X and Player O. Each player was only allowed to play once per turn cycle, and the game continued without skipping or repeating turns.
+
+--- 
+
+## Single Defuse Removal Test
+
+This test checks that a single opponent piece is correctly removed when it is trapped between two of the player’s pieces.
+
+### Test Data To Use
+
+- Board state before move:
+    - Position 3 = X
+    - Position 4 = O
+    - Position 5 = X
+- Player makes a move that triggers `defuseAfterTurn`
+
+### Test Result
+
+![Screencast+From+2026-05-07+14-17-23.gif](screenshots/Screencast%2BFrom%2B2026-05-07%2B14-17-23.gif)
+
+The program correctly detected the trapped O piece at position 4. It was removed and replaced with `" "`. The board updated correctly after the turn and no errors occurred. The defuse rule worked as expected.
