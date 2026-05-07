@@ -162,3 +162,51 @@ The program displayed the correct win message for Player X and ended the game lo
 The program correctly filled all 12 board positions with blank spaces and displayed the empty board layout properly.
 
 ---
+
+## Rejected Move on Same Spot Twice
+
+This test checks that the program does not allow a player to place a piece on an already occupied space.
+
+### Test Data Used
+
+- Input position: 4
+- Board state before move: position 4 contains `"X"` or `"O"`
+
+### Test Result
+
+![Screencast+From+2026-05-07+13-14-37.gif](screenshots/Screencast%2BFrom%2B2026-05-07%2B13-14-37.gif)
+
+The program correctly rejected the move and displayed an error message saying the space was already taken. The player was prompted to choose a different position and the board did not change.
+
+---
+
+## Score Starts at Zero
+
+This test checks that both players start the game with a score of zero.
+
+### Test Data Used
+
+- Game start before any moves are made
+
+### Test Result
+
+![Screencast+From+2026-05-07+13-17-29.gif](screenshots/Screencast%2BFrom%2B2026-05-07%2B13-17-29.gif)
+
+The program displayed both Player X and Player O scores as 0/10 at the start of the game. No points were incorrectly added before gameplay begins.
+
+---
+
+## Turn Alternation Test
+
+This test checks that turns correctly switch between Player X and Player O.
+
+### Test Data Used
+
+- Player X makes a valid move
+- Player O makes a valid move
+
+### Test Result
+
+![Screencast+From+2026-05-07+13-19-12.gif](screenshots/Screencast%2BFrom%2B2026-05-07%2B13-19-12.gif)
+
+The program correctly alternated turns between Player X and Player O. Each player was only allowed to play once per turn cycle, and the game continued without skipping or repeating turns.

@@ -89,6 +89,7 @@ fun printspace(space: List<String>) {
         // ive made the styled part of the board as just a print line as it is more effient then having it generate, although it does remove adaptive styling with board size.
 }
 
+
 // scoring scanner
 // | scans the board for 3 counters in a row or more |
 // | gives points and saves positions to delete later |
@@ -139,9 +140,8 @@ fun ExplodeCounter(space: MutableList<String>, positions: List<Int>) {
     }
 }
 
-
 // defusing players
-// | scans the board for a player with its oponent on the the spaces of either side of it then deletes it. |
+// | scans the board for a player with its opponent on the spaces of either side of it then deletes it. |
 // | This is used after every turn.                                                                        |
 fun defuseAfterTurn(space: MutableList<String>) {
 
@@ -176,7 +176,7 @@ fun defuseAfterTurn(space: MutableList<String>) {
 }
 
 // Show scores
-// | prints a stled score board with veriable scores, this is used after every turn |
+// | prints a styled score board with veriable scores, this is used after every turn |
 fun ShowScores(xScore: Int, oScore: Int) {
     println("╔═════════╦═════════╗")
     println("║    X    ║    O    ║")

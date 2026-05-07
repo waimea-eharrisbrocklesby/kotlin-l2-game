@@ -136,3 +136,34 @@ Reason: Ensures board setup works correctly.
 
 ### Expected Test Result
 All 12 positions contain `" "` and the board prints empty grid correctly.
+
+--- 
+
+## Rejected Move on Same Spot Twice
+
+### Test Data To Use
+Input position: 4  
+Board state: position 4 already contains `"X"` or `"O"`
+
+### Expected Test Result
+Program prints an error message saying the space is already taken and prompts the player to choose another position. The board does not change.
+
+---
+
+## Score Starts at Zero
+
+### Test Data To Use
+Start of game before any moves are made.
+
+### Expected Test Result
+Both players’ scores are displayed as 0/10. No points are awarded at the start of the game.
+
+---
+
+## Turn Alternation Test
+
+### Test Data To Use
+Player X makes a valid move, then Player O makes a valid move.
+
+### Expected Test Result
+The game correctly alternates turns between X and O. Each player only plays once per turn cycle, and no turns are skipped or duplicated.
