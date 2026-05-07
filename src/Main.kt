@@ -15,6 +15,8 @@ import kotlin.io.println
 
 import kotlin.io.println
 
+// Title screen
+// | Prints title screen, used at the start and after evry players turn. |
 fun title() {
     print("                         %@@@@@@        ".blue()); print("                                                              ".green()); println("   @@@@@@    @@@                   ".blue())
     print("                         @@    @@       ".blue()); print("                                                              ".green()); println("  @@    @@@@@@@                    ".blue())
@@ -41,6 +43,8 @@ fun title() {
     print("                                    ".blue()); print("                                                                  ".green()); println("             +@@@@@@@*             ".blue())
 }
 
+//Print Rules
+// | Prints Rules with colors, used at the start of the game |
 fun Rules() {
 
     println("Game Setup".blue())
@@ -61,12 +65,17 @@ fun Rules() {
     println("- The first player to reach 10 points wins".green())
 }
 
+//Playble space list
+// | Creates list with 12 playable spaces and fills them with `" "` (blank) |
 fun createSpace(space: MutableList<String>) {
     for (i in 1..12) {
         space.add(" ")
     }
 }
 
+
+//Style game board
+// | creates the game board with style, used every turn. |
 fun printspace(space: List<String>) {
     println("   1     2     3     4     5     6     7     8     9     10    11    12".blue())
     println("╔═════╦═════╦═════╦═════╦═════╦═════╦═════╦═════╦═════╦═════╦═════╦═════╗".green())
@@ -80,6 +89,9 @@ fun printspace(space: List<String>) {
         // ive made the styled part of the board as just a print line as it is more effient then having it generate, although it does remove adaptive styling with board size.
 }
 
+//Scoring scanner
+// | scans for a chain of above 3 and saves the number so it can add to the score, and saves what peices are making a |
+// | chain so then can be deleted later. This is used after every turn.                                               |
 fun scanChains(space: List<String>, playerSymbol: String): Pair<Int, List<Int>> {
 
     var points = 0
@@ -124,6 +136,9 @@ fun scanChains(space: List<String>, playerSymbol: String): Pair<Int, List<Int>> 
     return Pair(points, positionsToRemove)
 }
 
+// exploading couters
+// | gets counter that where saved earlier from the scan chains function and replaces them with `" "` (blank space) as |
+// | if they have exploaded. this is used after evry turn.                                                             |
 fun ExplodeCounter(space: MutableList<String>, positions: List<Int>) {
     val uniquePositions = positions.distinct()
     for (index in uniquePositions) {
@@ -131,6 +146,10 @@ fun ExplodeCounter(space: MutableList<String>, positions: List<Int>) {
     }
 }
 
+
+// defusing players
+// | scans the board for a player with its oponent on the the spaces of either side of it then deletes it. |
+// | This is used after every turn.                                                                        |
 fun defuseAfterTurn(space: MutableList<String>) {
 
     for (i in 0..11) {
@@ -163,6 +182,8 @@ fun defuseAfterTurn(space: MutableList<String>) {
     }
 }
 
+// Show scores
+// | prints a stled score board with veriable scores, this is used after every turn |
 fun ShowScores(xScore: Int, oScore: Int) {
     println("╔═════════╦═════════╗")
     println("║    X    ║    O    ║")
@@ -170,17 +191,24 @@ fun ShowScores(xScore: Int, oScore: Int) {
     println("╚═════════╩═════════╝")
 }
 
+// board padding
+// | adds a small board padding, used multiple times after evry turn. |
 fun boardpadding() {
     println()
     println()
 }  // made this function as i constantly needed a double line space and didnt want to qrite as much
 
+// Big spacer
+// | adds a really big space, used between every turn, this is used as it adds a big space between each turn so it  |
+// | apears that the board is the same one just with a change made to it, (makes smother game play)                 |
 fun bigspace() {
     for (i in 1..30) {
         println("")
     } // made this is a loop as 30 "println("")" in a row would take up uneeded space
 } // this function was made so I dont need to make the for loop 2 times as it has been used twice in the code
 
+// Main
+// | runs the main code and calls to all the other functions |
 fun main() {
     val space = mutableListOf<String>()
     var xScore = 0
