@@ -89,47 +89,40 @@ fun printspace(space: List<String>) {
         // ive made the styled part of the board as just a print line as it is more effient then having it generate, although it does remove adaptive styling with board size.
 }
 
-//Scoring scanner
-// | scans for a chain of above 3 and saves the number so it can add to the score, and saves what peices are making a |
-// | chain so then can be deleted later. This is used after every turn.                                               |
+// scoring scanner
+// | scans the board for 3 counters in a row or more |
+// | gives points and saves positions to delete later |
 fun scanChains(space: List<String>, playerSymbol: String): Pair<Int, List<Int>> {
 
     var points = 0
-    var streak = 0
-    var startIndex = -1
-
     val positionsToRemove = mutableListOf<Int>()
+    var i = 0
 
-    for (i in space.indices) {
+    while (i < 12) {
+        if (space[i] == playerSymbol) {  // found player counter
+            var chainLength = 1
+            var next = i + 1
 
-        if (space[i] == playerSymbol) {
-
-            if (streak == 0) {
-                startIndex = i
+            // seeinh how long chain is
+            while (next < 12 && space[next] == playerSymbol) {
+                chainLength++
+                next++
             }
 
-            streak++
+            // if chain is 3 or more
+            if (chainLength >= 3) {
+                points += chainLength
 
-        } else {
-
-            if (streak >= 3) {
-                points += streak
-
-                for (j in startIndex until startIndex + streak) {
+                // save all positions so we can remove later
+                for (j in i until i + chainLength) {
                     positionsToRemove.add(j)
                 }
             }
 
-            streak = 0
-            startIndex = -1
-        }
-    }
-
-    if (streak >= 3) {
-        points += streak
-
-        for (j in startIndex until startIndex + streak) {
-            positionsToRemove.add(j)
+            // skip past chain
+            i += chainLength
+        } else {
+            i++
         }
     }
 

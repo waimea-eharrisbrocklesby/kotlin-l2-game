@@ -23,12 +23,26 @@ The player’s symbol is placed at position 5. The board updates correctly and t
 
 ---
 
+## Boundry Move Placement!
+
+Player places a bomb on an empty square on the boundry of the board.
+
+### Test Data To Use
+Input position: 1 & 12  
+Board state: position 1 & 12 is empty `" "`  
+Reason: Tests normal valid gameplay move on the boundry of the baord.
+
+### Expected Test Result
+The player’s symbol is placed at position 1 & 12. The board updates correctly and the turn ends with no errors.
+
+---
+
 ## Invalid Out of Range Input
 
 Player enters a number outside the board range.
 
 ### Test Data To Use
-Input position: 0 or 13  
+Input position: 0 & 13  
 Reason: Tests boundary validation for board limits (1 to 12 only).
 
 ### Expected Test Result

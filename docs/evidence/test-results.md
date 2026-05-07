@@ -22,6 +22,24 @@ The program successfully placed the player symbol at position 5. The board updat
 
 ---
 
+## Boundry Move Placement!
+
+This test checks that a player can place a bomb on an empty space on the boundry of the board.
+
+### Test Data Used
+
+- Input position: 1 & 12
+- Board state before move: position 1 & 12 contains `" "`
+- Player
+
+### Test Result
+
+![Screencast+From+2026-05-07+12-18-21.gif](screenshots/Screencast%2BFrom%2B2026-05-07%2B12-18-21.gif)
+
+The program successfully placed the player symbol at position 1 & 12. The board updated correctly and the turn completed without errors.
+
+---
+
 ## Invalid Out of Range Input
 
 This test checks that the program rejects numbers outside the board range.
@@ -131,7 +149,7 @@ The program displayed the correct win message for Player X and ended the game lo
 
 ---
 
-## Empty Board Initialization This test checks that the board is initialized correctly when the game starts.
+## Empty Board Start up This test checks that the board is initialized correctly when the game starts.
 
 ### Test Data Used
 
